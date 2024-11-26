@@ -20,4 +20,10 @@ public class WiseSayingController {
 
     }
 
+    public void actionList() {
+        System.out.println("번호 / 작가 / 명언");
+        System.out.println("----------------------");
+        System.out.println("2 / 작가2 / 명언2");
+        System.out.println("번호1 / 작가1 / 명언1");
+    }
 }

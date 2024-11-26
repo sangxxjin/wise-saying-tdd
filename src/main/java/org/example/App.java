@@ -28,6 +28,9 @@ public class App {
             if ("등록".equals(cmd)) {
                 wiseSayingController.actionAdd();
             }
+            if ("목록".equals(cmd)) {
+                wiseSayingController.actionList();
+            }
         }
     }
 }
