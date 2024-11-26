@@ -34,4 +34,20 @@ public class WiseSayingControllerTest {
         assertThat(output)
             .contains("1번 명언이 등록되었습니다.");
     }
+
+    @Test
+    @DisplayName("매번 생성되는 명언번호는 1씩 증가 한다.")
+    public void t6() {
+        String output = AppTest.run("""
+            등록
+            명언1
+            작가1
+            등록
+            명언2
+            작가2
+            """);
+        assertThat(output)
+            .contains("1번 명언이 등록되었습니다.")
+            .contains("2번 명언이 등록되었습니다.");
+    }
 }
