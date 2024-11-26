@@ -13,7 +13,7 @@ public class WiseSayingControllerTest {
     @Test
     @DisplayName("== 명언 앱 ==")
     public void t1() {
-        String output = AppTest.run("종료");
+        String output = AppTest.run("");
         assertThat(output)
             .contains("== 명언 앱 ==");
     }
@@ -23,7 +23,6 @@ public class WiseSayingControllerTest {
     public void t2() {
         String output = AppTest.run("""
         목록
-        종료
         """);
 
         assertThat(output)
@@ -35,7 +34,6 @@ public class WiseSayingControllerTest {
         String output = AppTest.run("""
         목록
         목록
-        종료
         """);
         String[] split = output.split("명령\\) ");
         assertThat(split).hasSize(4);
