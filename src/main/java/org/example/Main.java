@@ -1,18 +1,32 @@
 package org.example;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+//        lab1();
+        lab2();
+    }
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+    private static void lab1() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("명령)");
+        String cmd = scanner.nextLine().trim();
+        System.out.println("입력한 명령: " + cmd);
+    }
+
+    private static void lab2() {
+        InputStream in = new ByteArrayInputStream("안녕\n잘가".getBytes());
+        Scanner scanner = new Scanner(in);
+        System.out.println("명령)");
+        String cmd = scanner.nextLine().trim();
+        System.out.println("입력한 명령: " + cmd);
+        cmd = scanner.nextLine().trim();
+        System.out.println("입력한 명령: " + cmd);
+
     }
 }
