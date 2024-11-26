@@ -1,18 +1,25 @@
 package org.example;
 
 import java.util.Scanner;
+import org.example.domain.system.controller.SystemController;
 
 public class App {
-    Scanner scanner;
+
+    private final Scanner scanner;
+    private final SystemController systemController;
+
     public App(Scanner scanner) {
         this.scanner = scanner;
+        this.systemController = new SystemController();
     }
-    public void run(){
+
+    public void run() {
         System.out.println("== 명언 앱 ==");
-        while(true){
+        while (true) {
             System.out.println("명령) ");
             String cmd = scanner.nextLine();
             if ("종료".equals(cmd)) {
+                systemController.actionExit();
                 break;
             }
         }
