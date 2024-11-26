@@ -73,6 +73,29 @@ public class WiseSayingControllerTest {
             .contains("번호 / 작가 / 명언")
             .contains("----------------------")
             .contains("2 / 작가2 / 명언2")
-            .contains("번호1 / 작가1 / 명언1");
+            .contains("1 / 작가1 / 명언1");
+    }
+
+    @Test
+    @DisplayName("목록 명령어 : 입력된 명언들을 출력한다.")
+    public void t8() {
+        String output = AppTest.run("""
+            등록
+            명언1
+            작가1
+            등록
+            명언2
+            작가2
+            등록
+            명언3
+            작가3
+            목록
+            """);
+        assertThat(output)
+            .contains("번호 / 작가 / 명언")
+            .contains("----------------------")
+            .contains("3 / 작가3 / 명언3")
+            .contains("2 / 작가2 / 명언2")
+            .contains("1 / 작가1 / 명언1");
     }
 }
