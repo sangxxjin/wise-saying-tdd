@@ -54,4 +54,25 @@ public class WiseSayingControllerTest {
             .contains("2번 명언이 등록되었습니다.")
             .contains("3번 명언이 등록되었습니다.");
     }
+
+    @Test
+    @DisplayName("목록 명령어 : 입력된 명언들을 출력한다.")
+    public void t7() {
+        String output = AppTest.run("""
+            등록
+            명언1
+            작가1
+            등록
+            명언2
+            작가2
+            목록
+            """);
+        assertThat(output)
+            .contains("1번 명언이 등록되었습니다.")
+            .contains("2번 명언이 등록되었습니다.")
+            .contains("번호 / 작가 / 명언")
+            .contains("----------------------")
+            .contains("2 / 작가2 / 명언2")
+            .contains("번호1 / 작가1 / 명언1");
+    }
 }
