@@ -22,4 +22,16 @@ public class WiseSayingControllerTest {
             .contains("명언 : ")
             .contains("작가 : ");
     }
+
+    @Test
+    @DisplayName("등록이 완료되면 명언 번호가 출력된다..")
+    public void t5() {
+        String output = AppTest.run("""
+            등록
+            명언1
+            작가1
+            """);
+        assertThat(output)
+            .contains("1번 명언이 등록되었습니다.");
+    }
 }
