@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 import org.example.domain.system.controller.SystemController;
-import org.example.domain.wiseSaying.WiseSayingController;
+import org.example.domain.wiseSaying.controller.WiseSayingController;
 
 public class App {
 
@@ -21,6 +21,8 @@ public class App {
         while (true) {
             System.out.println("명령) ");
             String cmd = scanner.nextLine();
+            String[] cmdBits = cmd.split("\\?");
+            String actionName = cmdBits[0];
             if ("종료".equals(cmd)) {
                 systemController.actionExit();
                 break;
@@ -30,6 +32,9 @@ public class App {
             }
             if ("목록".equals(cmd)) {
                 wiseSayingController.actionList();
+            }
+            if ("삭제".equals(actionName)) {
+                wiseSayingController.actionDelete(cmd);
             }
         }
     }
