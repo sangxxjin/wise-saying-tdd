@@ -3,8 +3,10 @@ package org.example.domain.wiseSaying.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.example.domain.wiseSaying.entity.WiseSaying;
+import org.example.standard.Util;
 
 public class WiseSayingFileRepository implements WiseSayingRepository {
 
@@ -22,7 +24,9 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
         }
 
         wiseSaying.setId(++lastId);
-        wiseSayings.add(wiseSaying);
+        Map<String, Object> wiseSayingMap = wiseSaying.toMap();
+        String jsonStr = Util.json.toString(wiseSayingMap);
+        Util.file.set("db/test/wiseSaying/1.json", jsonStr);
         return wiseSaying;
     }
 
