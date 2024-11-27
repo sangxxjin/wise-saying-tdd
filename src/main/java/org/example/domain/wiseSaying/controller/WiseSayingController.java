@@ -2,6 +2,7 @@ package org.example.domain.wiseSaying.controller;
 
 import java.util.List;
 import java.util.Scanner;
+import org.example.Command;
 import org.example.domain.wiseSaying.entity.WiseSaying;
 import org.example.domain.wiseSaying.entity.WiseSayingService;
 
@@ -35,14 +36,10 @@ public class WiseSayingController {
         }
     }
 
-    public void actionDelete(String cmd) {
-        String[] cmdBits = null;
-        int id = 0;
-        try {
-            cmdBits = cmd.split("\\?");
-            id = Integer.parseInt(cmdBits[1].split("=")[1]);
-        } catch (Exception e) {
-            System.out.println("명령어를 잘못 입력하셨습니다.");
+    public void actionDelete(Command command) {
+        int id = command.getParamAsInt("id", 0);
+        if (id == 0) {
+            System.out.println("id(숫자)를 입력해주세요.");
             return;
         }
         boolean removed = wiseSayingService.deleteById(id);

@@ -10,9 +10,10 @@ public class Command {
 
     public Command(String cmd) {
         this.params = new HashMap<>();
-        String[] cmtBits = cmd.trim().split("\\?");
-        this.actionName = cmtBits[0];
-        String queryString = cmtBits[1];
+        String[] cmtBits = cmd.trim().split("\\?", 2);
+        this.actionName = cmtBits[0].trim();
+        if (cmtBits.length == 1) return;
+        String queryString = cmtBits[1].trim();
         String[] params = queryString.split("&");
         for (String param : params) {
             String[] paramBits = param.split("=", 2);
