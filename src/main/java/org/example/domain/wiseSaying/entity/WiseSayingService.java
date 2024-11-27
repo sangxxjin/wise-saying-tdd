@@ -1,6 +1,7 @@
 package org.example.domain.wiseSaying.entity;
 
 import java.util.List;
+import java.util.Optional;
 import org.example.domain.wiseSaying.repository.WiseSayingRepository;
 
 public class WiseSayingService {
@@ -23,5 +24,9 @@ public class WiseSayingService {
 
     public boolean deleteById(int id) {
         return wiseSayingRepository.deleteById(id);
+    }
+
+    public Optional<WiseSaying> findById(int id) {
+        return wiseSayingRepository.findById(id);
     }
 }

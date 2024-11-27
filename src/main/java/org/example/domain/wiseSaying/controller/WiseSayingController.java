@@ -1,6 +1,7 @@
 package org.example.domain.wiseSaying.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import org.example.Command;
 import org.example.domain.wiseSaying.entity.WiseSaying;
@@ -48,5 +49,21 @@ public class WiseSayingController {
             return;
         }
         System.out.println(id + "번 명언이 삭제되었습니다.");
+    }
+
+    public void actionModify(Command command) {
+        int id = command.getParamAsInt("id", 0);
+        if (id == 0) {
+            System.out.println("id(숫자)를 입력해주세요.");
+            return;
+        }
+        Optional<WiseSaying> opWiseSaying = wiseSayingService.findById(id);
+        if (opWiseSaying.isEmpty()) {
+            System.out.println(id + "번 명언은 존재하지 않습니다.");
+            return;
+        }
+        WiseSaying wiseSaying = opWiseSaying.get();
+        System.out.println("명언(기존) : " + wiseSaying.getContent());
+        System.out.println("작가(기존) : " + wiseSaying.getAuthor());
     }
 }

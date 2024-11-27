@@ -2,6 +2,7 @@ package org.example.domain.wiseSaying.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.example.domain.wiseSaying.entity.WiseSaying;
 
 public class WiseSayingRepository {
@@ -26,5 +27,11 @@ public class WiseSayingRepository {
 
     public boolean deleteById(int id) {
         return wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
+    }
+
+    public Optional<WiseSaying> findById(int id) {
+        return wiseSayings.stream()
+            .filter(wiseSaying -> wiseSaying.getId() == id)
+            .findFirst();
     }
 }

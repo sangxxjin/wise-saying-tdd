@@ -12,8 +12,13 @@ public class Command {
         this.params = new HashMap<>();
         String[] cmtBits = cmd.trim().split("\\?", 2);
         this.actionName = cmtBits[0].trim();
-        if (cmtBits.length == 1) return;
+        if (cmtBits.length == 1) {
+            return;
+        }
         String queryString = cmtBits[1].trim();
+        if (queryString.isEmpty()) {
+            return;
+        }
         String[] params = queryString.split("&");
         for (String param : params) {
             String[] paramBits = param.split("=", 2);
