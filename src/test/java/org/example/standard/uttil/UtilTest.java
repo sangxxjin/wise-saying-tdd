@@ -3,10 +3,20 @@ package org.example.standard.uttil;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.example.standard.Util;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class UtilTest {
+    @BeforeAll
+    public static void beforeAll() {
+        Util.file.mkdir("temp");
+    }
+    @AfterAll
+    public static void afterAll() {
+        Util.file.rmdir("temp");
+    }
 
     @Test
     @DisplayName("파일 생성")
