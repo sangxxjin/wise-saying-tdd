@@ -27,4 +27,8 @@ public class Command {
     public String getParam(String key) {
         return params.get(key);
     }
+
+    public String getParam(String key, String defaultValue) {
+        return params.getOrDefault(key, defaultValue);
+    }
 }
