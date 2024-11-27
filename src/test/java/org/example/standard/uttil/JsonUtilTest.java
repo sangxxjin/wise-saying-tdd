@@ -97,15 +97,30 @@ public class JsonUtilTest {
     }
 
     @Test
-    @DisplayName("JSON to Map")
+    @DisplayName("JSON to Map(필드 1개)")
     public void t6() {
         String jsonStr = """
             {
                 "name": "이름",
             }
-            """;
+            """.stripIndent().trim();
         Map<String, Object> map = Util.json.toMap(jsonStr);
         assertThat(map).containsEntry("name", "이름");
+    }
+
+    @Test
+    @DisplayName("JSON to Map(필드 2개)")
+    public void t7() {
+        String jsonStr = """
+                {
+                    "name": "이름",
+                    "gender": "남자"
+                }
+                """.stripIndent().trim();
+        Map<String, Object> map = Util.json.toMap(jsonStr);
+        assertThat(map)
+            .containsEntry("name", "이름")
+            .containsEntry("gender", "남자");
     }
 
 }
