@@ -19,7 +19,7 @@ public class JsonUtilTest {
         String jsonStr = Util.json.toString(map);
         assertThat(jsonStr).isEqualTo("""
             {
-            "name": "이름"
+                "name": "이름"
             }
             """.stripIndent().trim());
     }
@@ -66,13 +66,13 @@ public class JsonUtilTest {
         map.put("height", 178.1543221);
         String jsonStr = Util.json.toString(map);
         assertThat(jsonStr).isEqualTo("""
-                {
-                    "id": 1,
-                    "name": "이름",
-                    "gender": "남자",
-                    "height": 178.1543221
-                }
-                """.stripIndent().trim());
+            {
+                "id": 1,
+                "name": "이름",
+                "gender": "남자",
+                "height": 178.1543221
+            }
+            """.stripIndent().trim());
     }
 
     @Test
@@ -86,14 +86,26 @@ public class JsonUtilTest {
         map.put("married", true);
         String jsonStr = Util.json.toString(map);
         assertThat(jsonStr).isEqualTo("""
-                {
-                    "id": 1,
-                    "name": "이름",
-                    "gender": "남자",
-                    "height": 178.1543221,
-                    "married": true
-                }
-                """.stripIndent().trim());
+            {
+                "id": 1,
+                "name": "이름",
+                "gender": "남자",
+                "height": 178.1543221,
+                "married": true
+            }
+            """.stripIndent().trim());
+    }
+
+    @Test
+    @DisplayName("JSON to Map")
+    public void t6() {
+        String jsonStr = """
+            {
+                "name": "이름",
+            }
+            """;
+        Map<String, Object> map = Util.json.toMap(jsonStr);
+        assertThat(map).containsEntry("name", "이름");
     }
 
 }
