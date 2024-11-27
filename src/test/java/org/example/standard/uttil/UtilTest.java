@@ -11,7 +11,7 @@ public class UtilTest {
     @Test
     @DisplayName("파일 생성")
     public void t1() {
-        String filePath = "test.txt";
+        String filePath = "temp/test.txt";
         Util.file.touch(filePath);
         assertThat(Util.file.exists(filePath)).isTrue();
     }
@@ -19,7 +19,7 @@ public class UtilTest {
     @Test
     @DisplayName("파일의 내용을 수정할 수 있고, 읽을 수 있다.")
     public void t2() {
-        String filePath = "test.txt";
+        String filePath = "temp/test.txt";
         Util.file.set(filePath, "내용");
         assertThat(
             Util.file.get(filePath, "")
@@ -29,7 +29,7 @@ public class UtilTest {
     @Test
     @DisplayName("파일을 삭제할 수 있다.")
     public void t3() {
-        String filePath = "test.txt";
+        String filePath = "temp/test.txt";
         Util.file.touch(filePath);
         Util.file.delete(filePath);
         assertThat(
