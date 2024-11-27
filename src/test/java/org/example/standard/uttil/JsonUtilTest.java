@@ -18,11 +18,12 @@ public class JsonUtilTest {
         map.put("name", "이름");
         String jsonStr = Util.json.toString(map);
         assertThat(jsonStr).isEqualTo("""
-                {
-                "name": "이름"
-                }
-                """.stripIndent().trim());
+            {
+            "name": "이름"
+            }
+            """.stripIndent().trim());
     }
+
     @Test
     @DisplayName("Map을 JSON으로 바꿀 수 있다.(필드 2개)")
     public void t2() {
@@ -31,11 +32,28 @@ public class JsonUtilTest {
         map.put("gender", "남자");
         String jsonStr = Util.json.toString(map);
         assertThat(jsonStr).isEqualTo("""
-                {
-                    "name": "이름",
-                    "gender": "남자"
-                }
-                """.stripIndent().trim());
+            {
+                "name": "이름",
+                "gender": "남자"
+            }
+            """.stripIndent().trim());
+    }
+
+    @Test
+    @DisplayName("Map을 JSON으로 바꿀 수 있다.(숫자 필드)")
+    public void t3() {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("id", 1);
+        map.put("name", "이름");
+        map.put("gender", "남자");
+        String jsonStr = Util.json.toString(map);
+        assertThat(jsonStr).isEqualTo("""
+            {
+                "id": 1,
+                "name": "이름",
+                "gender": "남자"
+            }
+            """.stripIndent().trim());
     }
 
 }
