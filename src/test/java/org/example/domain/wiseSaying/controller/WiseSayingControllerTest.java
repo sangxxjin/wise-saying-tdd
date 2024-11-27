@@ -98,4 +98,22 @@ public class WiseSayingControllerTest {
             .contains("2 / 작가2 / 명언2")
             .contains("1 / 작가1 / 명언1");
     }
+
+    @Test
+    @DisplayName("삭제 명령어 : 입력한 번호에 해당하는 명언이 삭제된다.")
+    public void t9() {
+        String output = AppTest.run("""
+                등록
+                명언1
+                작가1
+                등록
+                명언2
+                작가2
+                삭제?id=1
+                목록
+            """);
+        assertThat(output)
+            .contains("2 / 작가2 / 명언2")
+            .doesNotContain("1 / 작가1 / 명언1");
+    }
 }
