@@ -2,6 +2,7 @@ package org.example.standard.uttil;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.example.standard.Util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +13,7 @@ public class UtilTest {
     public void t1() {
         String filePath = "test.txt";
         Util.file.touch(filePath);
-        assertThat(Util.file.exists(filePath)).isTrue;
-
+        assertThat(Util.file.exists(filePath)).isTrue();
     }
 
 }
