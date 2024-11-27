@@ -1,8 +1,14 @@
 package org.example.standard;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Map;
 
 public class Util {
 
@@ -99,6 +105,23 @@ public class Util {
         public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
             Files.delete(dir);
             return FileVisitResult.CONTINUE;
+        }
+    }
+
+    public static class json {
+        private json() {
+        }
+        public static String toString(Map<String, Object> map) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("{");
+            sb.append("\n");
+            map.forEach((key, value) -> {
+                sb.append("    ");
+                sb.append("\"%s\": \"%s\"".formatted(key, value));
+            });
+            sb.append("\n");
+            sb.append("}");
+            return sb.toString();
         }
     }
 }

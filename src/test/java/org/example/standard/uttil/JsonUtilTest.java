@@ -14,13 +14,13 @@ public class JsonUtilTest {
     @DisplayName("Map을 Json으로 바꿀 수 있다.")
     public void t1() {
         Map<String, Object> map = new HashMap<>();
-        map.put("name","dlfma");
+        map.put("name", "이름");
         String jsonStr = Util.json.toString(map);
         assertThat(jsonStr).isEqualTo("""
                 {
                 "name": "이름"
                 }
-                """.stripIndent());
+                """.stripIndent().trim());
     }
 
 }
