@@ -22,6 +22,12 @@ public class CommandTest {
     public void t3() {
         Command cmd = new Command("삭제?id=10");
         assertThat(cmd.getParam("number")).isNull();
-    }/**/
+    }
+
+    @Test
+    public void t4() {
+        Command cmd = new Command("삭제?id=10");
+        assertThat(cmd.getParam("number", "-")).isEqualTo("-");
+    }
 
 }
