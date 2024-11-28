@@ -2,6 +2,7 @@ package org.example;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.example.global.app.Command;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

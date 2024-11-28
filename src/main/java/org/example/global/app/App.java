@@ -1,4 +1,4 @@
-package org.example;
+package org.example.global.app;
 
 import java.util.Scanner;
 import org.example.domain.system.controller.SystemController;

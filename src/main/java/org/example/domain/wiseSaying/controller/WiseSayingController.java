@@ -3,7 +3,7 @@ package org.example.domain.wiseSaying.controller;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-import org.example.Command;
+import org.example.global.app.Command;
 import org.example.domain.wiseSaying.entity.WiseSaying;
 import org.example.domain.wiseSaying.entity.WiseSayingService;
 
@@ -63,9 +63,11 @@ public class WiseSayingController {
             return;
         }
         WiseSaying wiseSaying = opWiseSaying.get();
-        System.out.print("명언(기존) : " + wiseSaying.getContent());
+        System.out.println("명언(기존) : " + wiseSaying.getContent());
+        System.out.print("명언 : ");
         String content = scanner.nextLine();
-        System.out.print("작가(기존) : " + wiseSaying.getAuthor());
+        System.out.println("작가(기존) : " + wiseSaying.getAuthor());
+        System.out.print("명언 : ");
         String author = scanner.nextLine();
         wiseSayingService.modify(wiseSaying, content, author);
     }

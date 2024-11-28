@@ -4,12 +4,19 @@ package org.example.domain.wiseSaying.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.example.AppTest;
+import org.example.global.app.AppConfig;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WiseSayingControllerTest {
+
+    @BeforeAll
+    public static void beforeAll() {
+        AppConfig.setTestMode();
+    }
 
     @BeforeEach
     public void beforeEach() {

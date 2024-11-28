@@ -6,22 +6,17 @@ import java.nio.file.NoSuchFileException;
 import java.util.List;
 import java.util.Optional;
 import org.example.domain.wiseSaying.entity.WiseSaying;
+import org.example.global.app.AppConfig;
 import org.example.standard.Util;
 
 public class WiseSayingFileRepository implements WiseSayingRepository {
 
-    private int lastId;
-
     public static String getTableDirPath() {
-        return "db/test/wiseSaying";
+        return AppConfig.getDbDirPath() + "/wiseSaying";
     }
 
     public static String getRowFilePath(int id) {
-        return getTableDirPath() + "/" + id + "json";
-    }
-
-    public WiseSayingFileRepository() {
-        this.lastId = 0;
+        return getTableDirPath() + "/" + id + ".json";
     }
 
     public static String getLastIdPath() {
