@@ -30,7 +30,7 @@ public class wiseSayingFileRepositoryTest {
     public void t1() {
         WiseSaying wiseSaying = new WiseSaying(0, "꿈을 지녀라. 그러면 어려운 현실을 이길 수 있다.", "괴테");
         wiseSayingRepository.save(wiseSaying);
-        String filePath = "db/test/wiseSaying/1.json";
+        String filePath = WiseSayingFileRepository.getRowFilePath(wiseSaying.getId());
         assertThat(
             Util.file.exists(filePath)
         ).isTrue();
@@ -46,7 +46,7 @@ public class wiseSayingFileRepositoryTest {
         WiseSaying wiseSaying = new WiseSaying(0, "꿈을 지녀라. 그러면 어려운 현실을 이길 수 있다.", "괴테");
         wiseSayingRepository.save(wiseSaying);
         wiseSayingRepository.deleteById(wiseSaying.getId());
-        String filePath = "db/test/wiseSaying/1.json";
+        String filePath = WiseSayingFileRepository.getRowFilePath(wiseSaying.getId());
         assertThat(
             Util.file.exists(filePath)
         ).isFalse();
