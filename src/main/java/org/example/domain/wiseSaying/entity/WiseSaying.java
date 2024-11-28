@@ -1,38 +1,48 @@
 package org.example.domain.wiseSaying.entity;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.example.standard.Util;
+
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class WiseSaying {
 
     private int id;
     private String content;
     private String author;
 
-    public WiseSaying(int id, String content, String author) {
-        this.id = id;
-        this.content = content;
-        this.author = author;
+    public WiseSaying(Map<String, Object> map) {
+        this.id = (int) map.get("id");
+        this.content = (String) map.get("content");
+        this.author = (String) map.get("author");
     }
 
-    public int getId() {
-        return id;
+    public WiseSaying(String jsonStr) {
+        this(Util.json.toMap(jsonStr));
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public boolean isNew() {
+        return id == 0;
     }
 
-    public String getContent() {
-        return content;
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("id", id);
+        map.put("content", content);
+        map.put("author", author);
+        return map;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
+    public String toJsonStr() {
+        return Util.json.toString(toMap());
     }
 }

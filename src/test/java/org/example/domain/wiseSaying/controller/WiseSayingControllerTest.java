@@ -4,11 +4,28 @@ package org.example.domain.wiseSaying.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.example.AppTest;
+import org.example.global.app.AppConfig;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WiseSayingControllerTest {
 
+    @BeforeAll
+    public static void beforeAll() {
+        AppConfig.setTestMode();
+    }
+
+    @BeforeEach
+    public void beforeEach() {
+        AppTest.dropTables();
+    }
+    @AfterEach
+    public void afterEach() {
+        AppTest.dropTables();
+    }
 
     @Test
     @DisplayName("등록을 입력하면 내용과 작가를 입력 받는다.")
@@ -97,5 +114,77 @@ public class WiseSayingControllerTest {
             .contains("3 / 작가3 / 명언3")
             .contains("2 / 작가2 / 명언2")
             .contains("1 / 작가1 / 명언1");
+    }
+
+    @Test
+    @DisplayName("삭제 명령어 : 입력한 번호에 해당하는 명언이 삭제된다.")
+    public void t9() {
+        String output = AppTest.run("""
+            등록
+            명언1
+            작가1
+            등록
+            명언2
+            작가2
+            삭제?id=1
+            목록
+            """);
+        assertThat(output)
+            .contains("2 / 작가2 / 명언2")
+            .doesNotContain("1 / 작가1 / 명언1");
+    }
+    @Test
+    @DisplayName("삭제 명령어 : 존재하지 않는 명언번호에 대한 처리")
+    public void t10() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                삭제?id=3
+                목록
+                """);
+        assertThat(output)
+            .contains("3번 명언은 존재하지 않습니다.");
+    }
+
+    @Test
+    @DisplayName("수정 명령어 : 기존 명언과 기존 작가를 보여준다.")
+    public void t11() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                수정?id=2
+                새 명언
+                새 작가
+                """);
+        assertThat(output)
+            .contains("명언(기존) : 과거에 집착하지 마라.")
+            .contains("작가(기존) : 작자미상");
+    }
+
+    @Test
+    @DisplayName("수정 명령어 : 명언이 수정된다.")
+    public void t12() {
+        String output = AppTest.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                수정?id=2
+                현재와 자신을 사랑하라.
+                홍길동
+                목록
+                """);
+        assertThat(output)
+            .contains("2 / 홍길동 / 현재와 자신을 사랑하라.");
     }
 }

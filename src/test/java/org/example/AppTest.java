@@ -4,12 +4,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Scanner;
+import org.example.domain.wiseSaying.repository.WiseSayingFileRepository;
+import org.example.global.app.App;
+import org.example.global.app.AppConfig;
 import org.example.standard.uttil.TestUtil;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class AppTest {
 
+    @BeforeAll
+    public static void beforeAll() {
+        AppConfig.setTestMode();
+    }
     @Test
     @DisplayName("== 명언 앱 ==")
     public void t1() {
@@ -45,9 +53,14 @@ public class AppTest {
         ByteArrayOutputStream outputStream = TestUtil.setOutToByteArray();
         App app = new App(scanner);
         app.run();
+        scanner.close();
         String output = outputStream.toString();
         TestUtil.clearSetOutToByteArray(outputStream);
         return output;
+    }
+
+    public static void dropTables() {
+        WiseSayingFileRepository.dropTable();
     }
 
 }
