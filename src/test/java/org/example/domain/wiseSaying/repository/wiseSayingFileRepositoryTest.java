@@ -3,6 +3,7 @@ package org.example.domain.wiseSaying.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
+import java.util.Optional;
 import org.example.domain.wiseSaying.entity.WiseSaying;
 import org.example.standard.Util;
 import org.junit.jupiter.api.AfterEach;
@@ -49,5 +50,16 @@ public class wiseSayingFileRepositoryTest {
         assertThat(
             Util.file.exists(filePath)
         ).isFalse();
+    }
+
+    @Test
+    @DisplayName("명언 단건조회")
+    public void t3() {
+        WiseSaying wiseSaying = new WiseSaying(0, "꿈을 지녀라. 그러면 어려운 현실을 이길 수 있다.", "괴테");
+        wiseSayingRepository.save(wiseSaying);
+        Optional<WiseSaying> opWiseSaying = wiseSayingRepository.findById(wiseSaying.getId());
+        assertThat(
+            opWiseSaying.get()
+        ).isEqualTo(wiseSaying);
     }
 }
