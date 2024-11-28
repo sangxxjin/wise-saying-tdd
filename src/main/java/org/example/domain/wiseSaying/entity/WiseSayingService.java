@@ -2,7 +2,7 @@ package org.example.domain.wiseSaying.entity;
 
 import java.util.List;
 import java.util.Optional;
-import org.example.domain.wiseSaying.repository.WiseSayingMemoryRepository;
+import org.example.domain.wiseSaying.repository.WiseSayingFileRepository;
 import org.example.domain.wiseSaying.repository.WiseSayingRepository;
 
 public class WiseSayingService {
@@ -10,7 +10,7 @@ public class WiseSayingService {
     private final WiseSayingRepository wiseSayingRepository;
 
     public WiseSayingService() {
-        this.wiseSayingRepository = new WiseSayingMemoryRepository();
+        this.wiseSayingRepository = new WiseSayingFileRepository();
     }
 
     public WiseSaying add(String content, String author) {

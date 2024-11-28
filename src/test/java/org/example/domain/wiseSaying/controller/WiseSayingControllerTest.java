@@ -4,11 +4,21 @@ package org.example.domain.wiseSaying.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.example.AppTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WiseSayingControllerTest {
 
+    @BeforeEach
+    public void beforeEach() {
+        AppTest.dropTables();
+    }
+    @AfterEach
+    public void afterEach() {
+        AppTest.dropTables();
+    }
 
     @Test
     @DisplayName("등록을 입력하면 내용과 작가를 입력 받는다.")

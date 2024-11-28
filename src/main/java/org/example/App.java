@@ -19,7 +19,7 @@ public class App {
     public void run() {
         System.out.println("== 명언 앱 ==");
         while (true) {
-            System.out.println("명령) ");
+            System.out.printf("명령) ");
             String cmd = scanner.nextLine();
             Command command = new Command(cmd);
             switch (command.getActionName()) {

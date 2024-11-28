@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Scanner;
+import org.example.domain.wiseSaying.repository.WiseSayingFileRepository;
 import org.example.standard.uttil.TestUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,6 +49,10 @@ public class AppTest {
         String output = outputStream.toString();
         TestUtil.clearSetOutToByteArray(outputStream);
         return output;
+    }
+
+    public static void dropTables() {
+        WiseSayingFileRepository.dropTable();
     }
 
 }
