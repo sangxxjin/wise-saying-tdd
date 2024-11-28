@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.example.standard.Util;
 
 @AllArgsConstructor
 @Getter
@@ -25,6 +26,10 @@ public class WiseSaying {
         this.author = (String) map.get("author");
     }
 
+    public WiseSaying(String jsonStr) {
+        this(Util.json.toMap(jsonStr));
+    }
+
     public boolean isNew() {
         return id == 0;
     }
@@ -35,5 +40,9 @@ public class WiseSaying {
         map.put("content", content);
         map.put("author", author);
         return map;
+    }
+
+    public String toJsonStr() {
+        return Util.json.toString(toMap());
     }
 }

@@ -2,11 +2,8 @@ package org.example.domain.wiseSaying.repository;
 
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import org.example.domain.wiseSaying.entity.WiseSaying;
 import org.example.standard.Util;
@@ -36,8 +33,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
         if (isNew) {
             wiseSaying.setId(getLastId() + 1);
         }
-        Map<String, Object> wiseSayingMap = wiseSaying.toMap();
-        String jsonStr = Util.json.toString(wiseSayingMap);
+        String jsonStr = wiseSaying.toJsonStr();
         Util.file.set(getRowFilePath(wiseSaying.getId()), jsonStr);
         if (isNew) {
             setLastId(wiseSaying.getId());
@@ -52,7 +48,6 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
                     "\\d+\\.json"
                 )
                 .map(path -> Util.file.get(path.toString(), ""))
-                .map(Util.json::toMap)
                 .map(WiseSaying::new)
                 .toList();
         } catch (NoSuchFileException e) {
@@ -75,8 +70,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
         if (jsonStr.isEmpty()) {
             return Optional.empty();
         }
-        Map<String, Object> wiseSayingMap = Util.json.toMap(jsonStr);
-        return Optional.of(new WiseSaying(wiseSayingMap));
+        return Optional.of(new WiseSaying(jsonStr));
     }
 
     public int getLastId() {
